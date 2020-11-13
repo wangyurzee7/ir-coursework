@@ -1,0 +1,31 @@
+<head><title>YazidSearch - Search Engine by Yazid Wong</title></head>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link href="../static/style/baidustyle.css" rel="stylesheet" type="text/css" />
+<link href="../static/style/sogoustyle.css" rel="stylesheet" type="text/css" />
+<link href="../static/style/yazidstyle.css" rel="stylesheet" type="text/css" />
+
+<body>
+
+<div align='center'>
+	<a href="/search/?keyword=&sdate=&edate=&go=>">
+		<img src="../static/jpg/logo.png" width=377px/>
+	</a>
+</div>
+<div align='center'>
+	<div style="width:730px"><form name="f" class="fm" action="/search" method="get">
+		<span class="bg s_ipt_wr fm">
+			<input id="Input1" name="keyword" placeholder="Yazid Go!" tabindex="1" title="Search text" class="s_ipt" maxlength="255" autocomplete="off" value="{{ keyword }}">
+		</span>
+		<!-- <span class="bg s_ipt_wr fm">
+			<input id="Input2" name="sdate" placeholder="eg : 1926-08-17" tabindex="2" title="Start Date" class="s_ipt" maxlength="255" autocomplete="off" value="{{ sdate }}">
+		</span>
+		<span class="bg s_ipt_wr fm">
+			<input id="Input3" name="edate" placeholder="eg : 2018-09-12" tabindex="3" title="End Date" class="s_ipt" maxlength="255" autocomplete="off" value="{{ edate }}">
+		</span> -->
+		<span class="bg s_btn_wr">
+			<p class="enter"><input id="searchButton" type="submit" title="Search" class="bg s_btn" value=">" name="go"></p>
+		</span>
+	</form></div>
+</div>
+</body>

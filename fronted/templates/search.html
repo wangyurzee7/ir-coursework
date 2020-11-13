@@ -1,0 +1,52 @@
+<head><title>{{ keyword }} - YazidSearch</title></head>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link href="../static/style/baidustyle.css" rel="stylesheet" type="text/css" />
+<link href="../static/style/sogoustyle.css" rel="stylesheet" type="text/css" />
+<link href="../static/style/yazidstyle.css" rel="stylesheet" type="text/css" />
+
+<div id="head"><div class="head_wrapper">
+	<div class="" style="width:1000px"><form name="f" class="fm" action="/search" method="get">
+		<div class="fm"><a href="/index/"><img src="../static/jpg/logo.png" width=122px/></a></div>
+		<span class="bg s_ipt_wr fm">
+			<input id="Input1" name="keyword" tabindex="1" title="Search text" class="s_ipt" maxlength="255" autocomplete="off" value="{{ keyword }}">
+		</span>
+		<!-- <span class="bg s_ipt_wr fm">
+			<input id="Input2" name="sdate" placeholder="eg : 1926-08-17" tabindex="2" title="Start Date" class="s_ipt" maxlength="255" autocomplete="off" value="{{ sdate }}">
+		</span>
+		<span class="bg s_ipt_wr fm">
+			<input id="Input3" name="edate" placeholder="eg : 2018-09-12" tabindex="3" title="End Date" class="s_ipt" maxlength="255" autocomplete="off" value="{{ edate }}">
+		</span> -->
+		<span class="bg s_btn_wr">
+			<p class="enter"><input id="searchButton" type="submit" title="Search" class="bg s_btn" value=">" name="go"></p>
+		</span>
+	</form></div>
+	
+</div></div>
+
+<div class="result-op c-container" id="content_left">
+	
+	<div class="" ><div class="" style=""><div class="search_tool_conter">
+		<span class="nums_text">YazidSearch find {{ newsCount }} result(s) for you. </span>
+		<span class="nums_text">{{ searchTime }} second used.</span>
+	</div></div></div>
+
+	<div>
+		{% for obj in news %}<div class="result c-container ">
+			<h3 class="t"><a href="/detail/{{ obj.index }}/" target="_blank">
+				{{ obj.title|safe }}
+			</a></h3>
+			<div class="c-abstract">
+				<p class="f13 m">{{ obj.date }}</p>
+				<p class="c-abstract">{{ obj.brief|safe }}</p>
+				<p class="f13 op-bk-polysemy-move"><span class="c-showurl">{{ obj.url }}</span></p>
+			</div>
+		</div>{% endfor %}
+	</div>
+
+	<div class="p">
+	{% for obj in pages %}
+		{{ obj|safe }}
+	{% endfor %}
+	</div>
+</div>

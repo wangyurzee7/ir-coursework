@@ -1,0 +1,3 @@
+[submodule "THULAC"]
+	path = THULAC
+	url = https://github.com/thunlp/THULAC.git

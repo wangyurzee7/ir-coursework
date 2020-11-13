@@ -1,0 +1,10 @@
+/* .p{margin-bottom:40px;zoom:1;width:861px;padding:0 5px 0 121px} */
+.p span,.p a,.p strong{min-width:34px;height:34px;display:block;line-height:34px;text-align:center;border-radius:2px;margin-right:10px;vertical-align:middle;float:left;font-size:14px}
+.p a{border:1px solid #ebebeb;text-decoration:none;color:#666}
+.p a:visited{color:#666}
+.p a:hover{border:1px solid #ccc;text-decoration:none;color:#333}
+.p:after{content:'';clear:both;display:block}
+.p span,.p strong{border:1px solid #f6f6f6;background:#f6f6f6;font-weight:bold}
+.p .pev{width:86px;margin-right:10px}
+.p .np{width:86px;margin-left:0;margin-right:20px}
+.p .pev:visited,.p .np:visited{color:#666}
