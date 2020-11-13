@@ -16,7 +16,7 @@ def parse_doc(line):
         except:
             continue
         text.append(word)
-        text_pos.append("{}({})".format(word,pos))
+        text_pos.append("{}_{}".format(word,pos))
     return text,text_pos
 
 if __name__=="__main__":

@@ -37,10 +37,7 @@ def search(request):
 
 	keyWords=[]
 	for word in keyword.split(' '):
-		if word.find('(')!=-1:
-			keyWords.append(word.split('(')[0])
-		else:
-			keyWords.append(word)
+		keyWords.append(word.split('_')[0])
 	for doc in doc_list:
 		news=doc["_source"]
 		news["index"]=doc["_id"]
