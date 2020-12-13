@@ -36,7 +36,7 @@ def search(request):
 	obj["searchTime"]='{0:.5f}'.format(time.time()-startTime)
 
 	keyWords=[]
-	for word in keyword.split(' '):
+	for word in keyword.replace("word2vec:","").split(' '):
 		keyWords.append(word.split('_')[0])
 	for doc in doc_list:
 		news=doc["_source"]

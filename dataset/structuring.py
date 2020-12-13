@@ -3,13 +3,18 @@ import json
 import os
 import sys
 from elasticsearch import Elasticsearch
+import numpy as np
 
 INDEX="ir-coursework"
 DOC_TYPE="document"
 
+word2vec=json.load(open("wiki_word2vec.json","r"))
+UNK=[1e-7 for i in range(300)]
+
 def parse_doc(line):
     arr=line.split(' ')
     text,text_pos=[],[]
+    vector_arr=[]
     for word_pos in arr:
         try:
             word,pos=word_pos.split("_")
@@ -17,7 +22,17 @@ def parse_doc(line):
             continue
         text.append(word)
         text_pos.append("{}_{}".format(word,pos))
-    return text,text_pos
+        if word in word2vec:
+            vector_arr.append(word2vec[word])
+        else:
+            vector_arr.append(UNK)
+    vector_arr=np.array(vector_arr).T
+    max_pooling=np.max(vector_arr,axis=1).tolist()
+    avg_pooling=np.mean(vector_arr,axis=1).tolist()
+    min_pooling=np.min(vector_arr,axis=1).tolist()
+    vector=max_pooling+avg_pooling+min_pooling
+    
+    return text,text_pos,vector
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
@@ -50,6 +65,10 @@ if __name__=="__main__":
                     'analyzer': 'whitespace',
                     'search_analyzer': 'whitespace'
                 },
+                "vector": {
+                    "type": "dense_vector",
+                    "dims": 900
+                }
             }
         })
 
@@ -64,12 +83,13 @@ if __name__=="__main__":
         if not line:
             continue
         try:
-            text,text_pos=parse_doc(line)
+            text,text_pos,vector=parse_doc(line)
             if not text:
                 continue
             es.index(index=INDEX,doc_type=DOC_TYPE,body={
                 "text": ' '.join(text),
                 "text_pos": ' '.join(text_pos),
+                "vector": vector,
             })
         except:
             if debug:
