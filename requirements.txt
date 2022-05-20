@@ -1,2 +1,2 @@
-elasticsearch
+elasticsearch7
 django
