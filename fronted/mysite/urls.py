@@ -16,14 +16,13 @@ Including another URLconf
 
 from django.contrib import admin
 admin.autodiscover()
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import view
 
 urlpatterns = [
-	#url(r'^$',view.hello),
-	url(r'^$', view.index),
-	url(r'index/', view.index),
-	url(r'search/$',view.search),
-    url(r'detail/([^/]+)/', view.detail),
+    # re_path(r'^$', view.index),
+    # re_path(r'index/', view.index),
+    re_path(r'search/$',view.search),
+    # re_path(r'detail/([^/]+)/', view.detail),
 ]
