@@ -8,24 +8,27 @@ def init():
     global es
     es=Elasticsearch(host='localhost', port=9200)
 
-def search(text, start, count):
+def search(text, start, count, search_filter = None):
     if type(text) == str:
         text = list(jieba.cut(text))
     if type(text) == list:
         text = ' '.join(text)
     global es
+    search_body = {
+        "from": start,
+        "size": count,
+        "query": {
+            "query_string": {
+                "query": text
+            }
+        }
+    }
+    if search_filter:
+        search_body["filter"] = search_filter
     ret = es.search(
         index=INDEX,
         doc_type=DOC_TYPE,
-        body={
-            "from": start,
-            "size": count,
-            "query": {
-                "query_string": {
-                    "query": text
-                }
-            }
-        }
+        body=search_body,
     )
     ret["query"] = text
     ret["start"] = start

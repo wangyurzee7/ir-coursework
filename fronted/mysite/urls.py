@@ -23,6 +23,9 @@ from . import view
 urlpatterns = [
     # re_path(r'^$', view.index),
     # re_path(r'index/', view.index),
-    re_path(r'search/$',view.search),
+    re_path(r'api/random/$',view.get_random),
+    re_path(r'api/weibo/$',view.get_weibo),
+    re_path(r'api/zhihu/$',view.get_zhihu),
+    re_path(r'api/search/$',view.search),
     # re_path(r'detail/([^/]+)/', view.detail),
 ]
